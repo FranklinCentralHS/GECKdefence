@@ -3,8 +3,8 @@
 [ext_resource type="Script" path="res://Assets/Scripts/TowerWeak.gd" id="1_1fcq7"]
 [ext_resource type="Texture2D" uid="uid://da1y00p3ptjjs" path="res://Assets/Sprites/Exported (usable)/Turrets (Ninjas)/Screen Shot 2024-09-17 at 7.21.04 PM.png" id="2_or8nk"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_vglds"]
-radius = 16.1245
+[sub_resource type="CircleShape2D" id="CircleShape2D_n7cb3"]
+radius = 82.4621
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_j8fv7"]
 radius = 188.767
@@ -12,9 +12,11 @@ radius = 188.767
 [node name="TowerWeak" type="StaticBody2D"]
 script = ExtResource("1_1fcq7")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_vglds")
-disabled = true
+[node name="TowerSpace" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TowerSpace"]
+scale = Vector2(1, 1)
+shape = SubResource("CircleShape2D_n7cb3")
 
 [node name="TowerSprite" type="Sprite2D" parent="."]
 position = Vector2(0, -3)
@@ -29,6 +31,8 @@ shape = SubResource("CircleShape2D_j8fv7")
 [node name="FireTimer" type="Timer" parent="."]
 autostart = true
 
+[connection signal="mouse_entered" from="TowerSpace" to="." method="_on_tower_space_mouse_entered"]
+[connection signal="mouse_exited" from="TowerSpace" to="." method="_on_tower_space_mouse_exited"]
 [connection signal="area_entered" from="Tower" to="." method="_on_tower_area_entered"]
 [connection signal="area_exited" from="Tower" to="." method="_on_tower_area_exited"]
 [connection signal="timeout" from="FireTimer" to="." method="_on_fire_timer_timeout"]

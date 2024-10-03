@@ -6,27 +6,27 @@
 [node name="dead" type="Node2D"]
 
 [node name="Label" type="Label" parent="."]
-offset_left = 925.0
-offset_top = 356.0
-offset_right = 1097.0
-offset_bottom = 411.0
+offset_left = 513.0
+offset_top = 182.0
+offset_right = 685.0
+offset_bottom = 237.0
 theme_override_font_sizes/font_size = 40
 text = "You Died"
 
 [node name="Retry" type="Button" parent="."]
-offset_left = 977.0
-offset_top = 429.0
-offset_right = 1032.0
-offset_bottom = 463.0
+offset_left = 567.0
+offset_top = 267.0
+offset_right = 622.0
+offset_bottom = 301.0
 theme_override_font_sizes/font_size = 18
 text = "Retry"
 script = ExtResource("1_kxmug")
 
 [node name="Quit" type="Button" parent="."]
-offset_left = 982.0
-offset_top = 486.0
-offset_right = 1024.0
-offset_bottom = 517.0
+offset_left = 572.0
+offset_top = 324.0
+offset_right = 614.0
+offset_bottom = 355.0
 text = "Quit"
 script = ExtResource("2_1tqby")
 

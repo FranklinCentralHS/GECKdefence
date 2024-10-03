@@ -10,7 +10,7 @@ var bullet = preload("res://Scenes/bullet.tscn")
 #@export creates visability in the inspector in scenes that use them
 @export var range = 10
 @export var fireRate = 1
-@export var power = 10
+@export var power = 5
 @export var cost = 10	
 
 var enemies:Array[Enemy] = []
@@ -52,3 +52,14 @@ func _on_fire_timer_timeout():
 		newBullet.velocity = (targetEnemy.position - self.position).normalized() * 200;
 		get_node("/root").add_child(newBullet)		
 		print("Fire!")
+
+
+
+func _on_tower_space_mouse_entered():
+	global.mouseOverTowers += 1
+	print("mouseOverTowers enter ", global.mouseOverTowers)
+
+
+func _on_tower_space_mouse_exited():
+	global.mouseOverTowers -= 1
+	print("mouseOverTowers exit ", global.mouseOverTowers)
