@@ -1,20 +1,18 @@
-[gd_scene load_steps=5 format=3 uid="uid://bj3scha6hf1uw"]
+[gd_scene load_steps=4 format=3 uid="uid://2mef4ga4wo0c"]
 
-[ext_resource type="Script" path="res://Assets/Scripts/TowerWeak.gd" id="1_1fcq7"]
-[ext_resource type="Texture2D" uid="uid://0begdng70gmb" path="res://Assets/Sprites/Exported (usable)/Turrets (Ninjas)/red_turret.png" id="2_vr5r4"]
-
-[sub_resource type="ImageTexture" id="ImageTexture_wh4ac"]
+[ext_resource type="Script" path="res://Scenes/tower_strong.gd" id="1_aqcf4"]
+[ext_resource type="Texture2D" uid="uid://c3sc66a7rmagp" path="res://Assets/Sprites/Exported (usable)/Turrets (Ninjas)/blue_turret.png" id="2_1jbsi"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_j8fv7"]
 radius = 126.479
 
 [node name="Tower" type="StaticBody2D"]
-script = ExtResource("1_1fcq7")
+script = ExtResource("1_aqcf4")
 
 [node name="TowerSprite" type="Sprite2D" parent="."]
-position = Vector2(0, -3)
-scale = Vector2(0.412356, 0.410714)
-texture = SubResource("ImageTexture_wh4ac")
+rotation = -1.5708
+scale = Vector2(0.501, 0.5)
+texture = ExtResource("2_1jbsi")
 
 [node name="RangeArea" type="Area2D" parent="."]
 
@@ -23,12 +21,6 @@ shape = SubResource("CircleShape2D_j8fv7")
 
 [node name="FireTimer" type="Timer" parent="."]
 autostart = true
-
-[node name="RedTurret" type="Sprite2D" parent="."]
-position = Vector2(8, 0)
-rotation = -1.5708
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("2_vr5r4")
 
 [connection signal="area_entered" from="RangeArea" to="." method="_on_tower_area_entered"]
 [connection signal="area_exited" from="RangeArea" to="." method="_on_tower_area_exited"]

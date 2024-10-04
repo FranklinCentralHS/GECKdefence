@@ -5,13 +5,19 @@ class_name Enemy
 #variables
 #@export creates visability in the inspector in scenes that use them
 @export var hp = 10
-@export var speed = 100*(global.wave/2)
+@export var speed = 100
 @export var damage = 30
-
+@export var coinValue = 10
 
 
 func _process(delta):
+	if self.hp <= 0:
+		var parent = self.get_parent()
+		parent.remove_child(self)
+		global.coins += self.coinValue
+		
 	self.set_progress(self.get_progress() + self.speed * delta)
+
 
 	if self.progress_ratio > 0.99:
 		global.health-=damage
@@ -33,9 +39,7 @@ func _on_bat_area_entered(area):
 			var bullet = area.get_parent()
 			bullet.remove()
 			
-			if self.hp <= 0:
-				parent.remove_child(self)
-				global.coins += 10
+			
 
 
 	print(area.name)

@@ -2,6 +2,10 @@ extends Node2D
 
 var bat = preload("res://Scenes/bat.tscn")
 var towerWeak = preload("res://Scenes/tower_weak.tscn")
+var towerMedium = preload("res://Scenes/tower_medium.tscn")
+var towerStrong = preload("res://Scenes/tower_strong.tscn")
+
+var selectedTower:PackedScene = null
 
 var path;
 
@@ -9,9 +13,12 @@ var remainingEnemies = 5*global.wave;
 var towers = [];
 
 @onready var timer = get_node("SpawnTimer")
+var level = "Level1"
 
 func _ready():
-	path = get_node("Map/Path2D")
+	selectedTower=towerMedium
+	level = get_node(level)
+	path = level.get_node("Path2D")
 
 func _process(_delta):
 	if global.health<=0:
@@ -29,22 +36,24 @@ func _on_spawn_timer_timeout():
 		
 
 func add_tower(position):
-	var cost = 20
+	var newTower = selectedTower.instantiate()
+	var cost = newTower.cost
 	
 	if global.mouseOverTowers > 0:
-		return
+		return false
 		
 	if global.coins < cost:
-		return
+		return false
 		
 	global.coins -= cost
 	
 	#print("adding tower")
 	print(timer.wait_time)
-	var newTower = towerWeak.instantiate()
 	newTower.position = position;
 	towers.append(newTower)
 	self.add_child(newTower)
+	
+	return true
 
 
 func _on_button_pressed():
@@ -53,3 +62,13 @@ func _on_button_pressed():
 		timer.wait_time = 1 / global.wave*2
 		print("Wave:", global.wave)
 		remainingEnemies = 5 * global.wave
+
+
+func _on_make_weak_pressed():
+	selectedTower = towerWeak
+
+func _on_make_medium_pressed():
+	selectedTower = towerMedium
+
+func _on_make_strong_pressed():
+	selectedTower = towerStrong

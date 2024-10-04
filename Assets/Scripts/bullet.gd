@@ -2,6 +2,8 @@ extends CharacterBody2D
 
 
 
+
+
 func _process(_delta):
 	self.move_and_slide()
 	
