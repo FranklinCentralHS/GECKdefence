@@ -9,6 +9,9 @@ class_name Enemy
 @export var damage = 30
 @export var coinValue = 10
 
+func _ready():
+	self.hp = 10 * global.wave
+	self.speed = 100 * global.wave
 
 func _process(delta):
 	if self.hp <= 0:
