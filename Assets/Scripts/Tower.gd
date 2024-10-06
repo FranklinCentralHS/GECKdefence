@@ -11,9 +11,7 @@ var bullet = preload("res://Scenes/bullet.tscn")
 @export var range = 10
 @export var fireRate = 1
 @export var power = 5
-@export var cost = 10	
 @export var fireVelocity = 200
-
 
 
 var enemies:Array[Enemy] = []
@@ -22,7 +20,10 @@ var targetEnemy:Enemy = null
 func _ready():
 	print("Tower _ready")
 	var timer:Timer = self.get_node("FireTimer")
-	timer.wait_time = fireRate
+	timer.wait_time = self.fireRate
+	
+func get_cost():
+	return 10	
 	
 func _process(delta):
 	if targetEnemy:
@@ -33,7 +34,7 @@ func find_target():
 		targetEnemy = enemies[0]
 
 func _on_tower_area_entered(area):
-	if area.name == "Bat":
+	if area.name == "EnemyArea":
 		var enemy = area.get_parent()
 		enemies.append(enemy)
 	
@@ -41,7 +42,7 @@ func _on_tower_area_entered(area):
 	
 
 func _on_tower_area_exited(area):
-	if area.name == "Bat":
+	if area.name == "EnemyArea":
 		var enemy = area.get_parent()
 		var position = enemies.find(enemy)
 		if position > -1:
@@ -54,6 +55,7 @@ func _on_fire_timer_timeout():
 	if targetEnemy != null:
 		var newBullet:CharacterBody2D = bullet.instantiate()
 		newBullet.position = self.position
+		newBullet.power = self.power
 		
 		#Vector2 offsettedTarget = targetEnemy.position + targetEnemy.Transform.X * 50f;
 			#Vector2 velocity = (offsettedTarget - Position).Normalized();

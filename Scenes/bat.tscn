@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://dq223e6q1a4hw"]
 
-[ext_resource type="Script" path="res://Assets/Scripts/Enemy.gd" id="1_u7rtt"]
+[ext_resource type="Script" path="res://Assets/Scripts/Bat.gd" id="1_fem6f"]
 [ext_resource type="Texture2D" uid="uid://bwtsb00eicia8" path="res://Assets/Sprites/bat.png" id="2_y5cgl"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bctle"]
@@ -35,11 +35,19 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_p0wdd"]
 radius = 9.05539
 
-[node name="Bat" type="PathFollow2D"]
+[node name="Enemy" type="PathFollow2D"]
+rotates = false
 loop = false
-script = ExtResource("1_u7rtt")
+script = ExtResource("1_fem6f")
 
-[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
+[node name="Label" type="Label" parent="."]
+texture_filter = 1
+offset_left = -21.0
+offset_top = -32.0
+offset_right = 21.0
+offset_bottom = -9.0
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 position = Vector2(-1, 2)
 scale = Vector2(0.75, 0.6875)
@@ -47,9 +55,11 @@ sprite_frames = SubResource("SpriteFrames_glpa8")
 animation = &"new_animation"
 autoplay = "new_animation"
 
-[node name="Bat" type="Area2D" parent="."]
+[node name="EnemyArea" type="Area2D" parent="."]
+collision_layer = 3
+collision_mask = 3
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Bat"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyArea"]
 shape = SubResource("CircleShape2D_p0wdd")
 
-[connection signal="area_entered" from="Bat" to="." method="_on_bat_area_entered"]
+[connection signal="area_entered" from="EnemyArea" to="." method="_on_bat_area_entered"]

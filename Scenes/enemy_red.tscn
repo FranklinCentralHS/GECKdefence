@@ -1,0 +1,84 @@
+[gd_scene load_steps=11 format=3 uid="uid://p6u00ta2kqs3"]
+
+[ext_resource type="Script" path="res://Assets/Scripts/Red.gd" id="1_110uv"]
+[ext_resource type="Texture2D" uid="uid://huu1wt44ams1" path="res://Assets/Sprites/Exported (usable)/Enemies (Demons)/enemy_basic_normal.png" id="2_x6nbi"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8kxlg"]
+atlas = ExtResource("2_x6nbi")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_le7vg"]
+atlas = ExtResource("2_x6nbi")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tgl38"]
+atlas = ExtResource("2_x6nbi")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v56qm"]
+atlas = ExtResource("2_x6nbi")
+region = Rect2(96, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iqcfs"]
+atlas = ExtResource("2_x6nbi")
+region = Rect2(128, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eyqdi"]
+atlas = ExtResource("2_x6nbi")
+region = Rect2(160, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pnsjf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8kxlg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_le7vg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tgl38")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v56qm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iqcfs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eyqdi")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_p0wdd"]
+radius = 15.0
+
+[node name="Enemy" type="PathFollow2D"]
+rotates = false
+loop = false
+script = ExtResource("1_110uv")
+
+[node name="Label" type="Label" parent="."]
+texture_filter = 1
+offset_left = -21.0
+offset_top = -32.0
+offset_right = 19.0
+offset_bottom = -9.0
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-2, -2)
+scale = Vector2(1.84375, 1.875)
+sprite_frames = SubResource("SpriteFrames_pnsjf")
+
+[node name="EnemyArea" type="Area2D" parent="."]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyArea"]
+shape = SubResource("CircleShape2D_p0wdd")
+
+[connection signal="area_entered" from="EnemyArea" to="." method="_on_bat_area_entered"]

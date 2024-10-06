@@ -9,9 +9,6 @@ class_name Enemy
 @export var damage = 30
 @export var coinValue = 10
 
-func _ready():
-	self.hp = 10 * global.wave
-	self.speed = 100 * global.wave
 
 func _process(delta):
 	if self.hp <= 0:
@@ -20,7 +17,9 @@ func _process(delta):
 		global.coins += self.coinValue
 		
 	self.set_progress(self.get_progress() + self.speed * delta)
-
+	var label:Label = self.get_node("Label")
+	
+	label.text = "%s hp" % [self.hp]
 
 	if self.progress_ratio > 0.99:
 		global.health-=damage
@@ -36,10 +35,10 @@ func _process(delta):
 
 func _on_bat_area_entered(area):
 	if area.name == "Bullet":
+		var bullet = area.get_parent()
 		var parent = self.get_parent()
 		if parent != null:
-			self.hp -= 5
-			var bullet = area.get_parent()
+			self.hp -= bullet.power
 			bullet.remove()
 			
 			

@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 
 
-
+@export var power = 0
 
 func _process(_delta):
 	self.move_and_slide()

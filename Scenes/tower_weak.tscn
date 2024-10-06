@@ -10,6 +10,10 @@ radius = 126.479
 
 [node name="Tower" type="StaticBody2D"]
 script = ExtResource("1_1fcq7")
+range = null
+fireRate = null
+power = null
+fireVelocity = null
 
 [node name="TowerSprite" type="Sprite2D" parent="."]
 position = Vector2(0, -3)

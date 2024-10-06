@@ -1,0 +1,86 @@
+[gd_scene load_steps=11 format=3 uid="uid://ngo3mmxsdhub"]
+
+[ext_resource type="Script" path="res://Scenes/Green.gd" id="1_b7r6p"]
+[ext_resource type="Texture2D" uid="uid://4o3ouxjedir3" path="res://Assets/Sprites/Exported (usable)/Enemies (Demons)/enemy_basic_cash.png" id="2_xvdov"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c3yuh"]
+atlas = ExtResource("2_xvdov")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pqpqv"]
+atlas = ExtResource("2_xvdov")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_colam"]
+atlas = ExtResource("2_xvdov")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8srfj"]
+atlas = ExtResource("2_xvdov")
+region = Rect2(96, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4mgcl"]
+atlas = ExtResource("2_xvdov")
+region = Rect2(128, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c8yjr"]
+atlas = ExtResource("2_xvdov")
+region = Rect2(160, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_r2wf1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c3yuh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pqpqv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_colam")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8srfj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4mgcl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c8yjr")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_p0wdd"]
+radius = 15.0
+
+[node name="Enemy" type="PathFollow2D"]
+rotates = false
+loop = false
+script = ExtResource("1_b7r6p")
+
+[node name="Label" type="Label" parent="."]
+texture_filter = 1
+offset_left = -21.0
+offset_top = -32.0
+offset_right = 19.0
+offset_bottom = -9.0
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-2, -2)
+scale = Vector2(1.84375, 1.875)
+sprite_frames = SubResource("SpriteFrames_r2wf1")
+autoplay = "default"
+frame_progress = 0.431338
+
+[node name="EnemyArea" type="Area2D" parent="."]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyArea"]
+shape = SubResource("CircleShape2D_p0wdd")
+
+[connection signal="area_entered" from="EnemyArea" to="." method="_on_bat_area_entered"]

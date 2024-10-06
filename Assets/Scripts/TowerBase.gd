@@ -6,10 +6,11 @@ var mouse_over = false
 
 
 func _on_input_event(viewport, event, shape_idx):
-	if event is InputEventMouseButton:
+	if event is InputEventMouseButton and event.pressed:
 		print("tower has_tower: ", self.has_tower)
-		if self.has_tower:
-			return
+		if self.has_tower == true and event.button_index == MOUSE_BUTTON_MASK_RIGHT:
+			self.get_node("/root/Game").remove_tower(self.position)
+			self.has_tower = false
 
-		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+		elif self.has_tower == false and event.button_index == MOUSE_BUTTON_LEFT:
 			self.has_tower = self.get_node("/root/Game").add_tower(self.position)
