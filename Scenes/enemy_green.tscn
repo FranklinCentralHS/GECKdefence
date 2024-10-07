@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://ngo3mmxsdhub"]
 
-[ext_resource type="Script" path="res://Scenes/Green.gd" id="1_b7r6p"]
+[ext_resource type="Script" path="res://Assets/Scripts/Green.gd" id="1_b7r6p"]
 [ext_resource type="Texture2D" uid="uid://4o3ouxjedir3" path="res://Assets/Sprites/Exported (usable)/Enemies (Demons)/enemy_basic_cash.png" id="2_xvdov"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_c3yuh"]
