@@ -191,11 +191,11 @@ horizontal_alignment = 1
 
 [node name="Label" type="Label" parent="."]
 texture_filter = 2
-offset_left = 333.0
+offset_left = 317.0
 offset_top = 64.0
-offset_right = 819.0
+offset_right = 828.0
 offset_bottom = 87.0
-text = "Thank you to all the people who helped meke this project work"
+text = "Thank you to all the people who helped meke this project possible"
 
 [node name="Return to main menu" type="Button" parent="."]
 offset_left = 486.0
